@@ -22,10 +22,13 @@
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-secondary" href="http://crud.test/userList.php">cancel</a>
-                    <form action="/delete.php" method="delete" class="d-inline">
+                    <form method="post" action="/delete.php" class="d-inline">
+                        <?php
+                           $id = $_GET['id']
+                        ?>
+                        <input hidden type="text" name="id" value="<?php echo $id; ?>">
                         <input type="submit" value="Delete" class="btn btn-danger" >
                     </form>
-                    <!-- <button type="button" class="btn btn-danger">Delete</button> -->
                 </div>
             </div>
         </div>

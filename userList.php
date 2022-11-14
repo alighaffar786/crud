@@ -11,6 +11,14 @@
 </head>
 
 <body class="bg-secondary container mt-5">
+    <?php
+        session_start();
+        if (isset($_SESSION['success'])) {
+            echo "<div class='w-25 rounded  m-3 text-white fw-bold shadow p-3 bg-success'> " . $_SESSION['success'] . "</div>";
+            session_unset();
+            session_destroy();
+        }
+        ?>
     <table style='margin:auto;' class="bg-white table">
         <tr>
             <!-- table heading  -->
@@ -29,11 +37,9 @@
             $fName = $row['father_name'];
             echo "<tr><td>" . $name . "</td><td>" . $fName . "</td><td>";
             ?>
-            <form action="/userDetail.php" class="d-inline" method="post">
-                <input type="text" hidden name="id" value="<?php echo $id."</td><tr>"?>">
-                <input type="submit"  value="View" class=" btn btn-primary">
-            </form>
-            
+            <a href="updateForm.php?id=<?php echo $id ?>" class="btn btn-primary">Update</a>
+            <a href="modal.php?id=<?php echo $id;?>" class=" btn btn-danger">Delete</a>
+            </td></tr>
             <?php
         }
             ?>

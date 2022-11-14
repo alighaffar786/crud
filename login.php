@@ -18,8 +18,7 @@
         session_start();
         if (isset($_SESSION['name'])) {
             echo "<div class='w-25 rounded  m-3 text-white fw-bold shadow p-3 bg-success'> Mr " . $_SESSION['name'] . " your are successfully signup please log in</div>";
-            session_unset();
-            session_destroy();
+            
         }
         ?>
 
@@ -32,8 +31,8 @@
                     <label for="email" class="form-label fw-bold text-secondary">Email address</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
                     <span class="text-danger">
-                        <?php if (isset($_SESSION['login']['email'])) {
-                            echo $_SESSION['login']['email'];
+                        <?php if (isset($_SESSION['field']['email'])) {
+                            echo $_SESSION['field']['email'];
                         }
                         ?>
                     </span>
@@ -42,8 +41,8 @@
                     <label for="pass" class="form-label fw-bold text-secondary">PASSWORD</label>
                     <input type="password" class="form-control" name="pass" id="pass" placeholder="password">
                     <span class="text-danger">
-                        <?php if (isset($_SESSION['login']['pass'])) {
-                            echo $_SESSION['login']['pass'];
+                        <?php if (isset($_SESSION['field']['pass'])) {
+                            echo $_SESSION['field']['pass'];
                         }
 
                        
@@ -59,8 +58,8 @@
                 }
                 ?>
                 <span class="text-danger">
-                        <?php if (isset($_SESSION['login']['error'])) {
-                            echo $_SESSION['login']['error'];
+                        <?php if (isset($_SESSION['field']['error'])) {
+                            echo $_SESSION['field']['error'];
                         }
 
                         session_unset();

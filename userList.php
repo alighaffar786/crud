@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 
-<body class="bg-secondary container mt-5">
+<body class="bg-secondary container my-5">
     <?php
         session_start();
         if (isset($_SESSION['success'])) {
@@ -37,7 +37,7 @@
             $fName = $row['father_name'];
             echo "<tr><td>" . $name . "</td><td>" . $fName . "</td><td>";
             ?>
-            <a href="updateForm.php?id=<?php echo $id ?>" class="btn btn-primary">Update</a>
+            <a href="editForm.php?id=<?php echo $id ?>" class="btn btn-primary">Update</a>
             <a href="modal.php?id=<?php echo $id;?>" class=" btn btn-danger">Delete</a>
             </td></tr>
             <?php

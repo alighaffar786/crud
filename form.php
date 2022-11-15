@@ -13,69 +13,55 @@
 <body>
 
     <!-- sing up form -->
-    <?php
-    session_start();
-    require 'db.php';
-    if(isset($_GET['id'])){
-    $uid = $_GET['id'];
-    $query = "SELECT * FROM user WHERE id = '$uid' ";
-    $sql = mysqli_query($conn,$query);
-    $row = mysqli_fetch_array($sql);
-    
-    }
-    
-
-    ?>
+   
         <main class="container d-flex vh-100 justify-content-center align-items-center">
             <div class="shadow bg-white  flex-column rounded w-50 d-flex justify-content-center align-items-center p-4">
-                <h2 class="text-secondary fw-bold mb-5">Update Form</h2>
-                <form class="w-100" method="post" action="/update.php">
-                    <div class="mb-3 w-100">
+                <h2 class="text-secondary fw-bold mb-5"><?php echo $heading ?></h2>
+                <form class="w-100" method="post" action="<?php echo $url; ?>">
+                <div class="mb-3 w-100">
                         <label for="name" class="form-label fw-bold text-secondary">NAME</label>
-                        <input type="text" hidden value="<?php if(isset($row[0])){echo $row[0] ;} ?>" name="id" >
-                        <input type="text" class="form-control" value="<?php if(isset($row[1])){echo $row[1] ;} ?>" name="name" id="name" placeholder="Name">
+                        <input type="text" hidden name="method" value="put" />
+                        <input type="text" hidden value="<?php if(isset($id)){echo $id ;} ?>" name="id" >
+                        <input type="text" class="form-control" value="<?php if(isset($name)){echo $name    ;} ?>" name="name" id="name" placeholder="Name">
                         <span class="text-danger">
-                            <?php if (isset($_SESSION['field']['name'])) {
-                                    echo $_SESSION['field']['name'];
+                            <?php if (isset($nameER)) {
+                                    echo $nameER;
                                 }   
                             ?>
                         </span>
                     </div>
                     <div class="mb-3 w-100">
                         <label for="f_name" class="form-label fw-bold text-secondary">FATHER NAME</label>
-                        <input type="text" class="form-control" name="f_name" id="f_name" value="<?php if(isset($row[2])){echo $row[2] ;}  ?>" placeholder="Father name">
+                        <input type="text" class="form-control" name="f_name" id="f_name" value="<?php if(isset($fName)){echo $fName ;}  ?>" placeholder="Father name">
                         <span class="text-danger">
-                            <?php if (isset($_SESSION['field']['f_name'])) {
-                                    echo $_SESSION['field']['f_name'];
+                            <?php if (isset($fNameER )) {
+                                    echo $fNameER ;
                                 }   
                             ?>
                         </span>
                     </div>
                     <div class="mb-3 w-100">
                         <label for="email" class="form-label fw-bold text-secondary">Email address</label>
-                        <input type="email" class="form-control" value="<?php if(isset($row[3])){echo $row[3] ;} ?>" name="email" id="email" placeholder="name@example.com">
+                        <input type="email" class="form-control" value="<?php if(isset($email)){echo $email ;} ?>" name="email" id="email" placeholder="name@example.com">
                         <span class="text-danger">
-                            <?php if (isset($_SESSION['field']['email'])) {
-                                    echo $_SESSION['field']['email'];
+                            <?php if (isset($emailER )) {
+                                    echo $emailER ;
                                 }   
                             ?>
                         </span>
                     </div>
                     <div class="mb-3 w-100">
                         <label for="pass" class="form-label fw-bold text-secondary">PASSWORD</label>
-                        <input type="text" value="<?php if(isset($row[4])){echo $row[4] ;}  ?>" class="form-control" name="pass" id="pass" placeholder="password">
+                        <input type="text" value="<?php if(isset($pass)){echo $pass ;}  ?>" class="form-control" name="pass" id="pass" placeholder="password">
                         <span class="text-danger">
-                            <?php if (isset($_SESSION['field']['pass'])) {
-                                    echo $_SESSION['field']['pass'];
+                            <?php if (isset($passER)) {
+                                    echo $passER;
                                 }   
-
-                                session_unset();
-                                session_destroy();
                             ?>
                         </span>
                     </div>
                     <div class="mb-3 w-100">
-                        <input name="submit" value="Update" type="submit" class="btn btn-primary fw-bold form-control">
+                        <input name="submit" value="<?php if(isset($btn)){echo $btn ;}  ?>" type="submit" class="btn btn-primary fw-bold form-control">
                     </div>
                     <?php
 

@@ -27,6 +27,7 @@
                            $id = $_GET['id']
                         ?>
                         <input hidden type="text" name="id" value="<?php echo $id; ?>">
+                        <input type="text" hidden name="method" value="delete">
                         <input type="submit" value="Delete" class="btn btn-danger" >
                     </form>
                 </div>

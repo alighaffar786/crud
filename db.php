@@ -1,17 +1,9 @@
 <?php
-
-namespace DevCoder;
-
 class DotEnv
 {
-    /**
-     * The directory where the .env file can be located.
-     *
-     * @var string
-     */
-    protected $path;
+    public $path;
 
-    public function __construct(string $path)
+     public function __construct($path)
     {
         if(!file_exists($path)) {
             throw new \InvalidArgumentException(sprintf('%s does not exist', $path));
@@ -19,18 +11,14 @@ class DotEnv
         $this->path = $path;
     }
 
-    public function load() :void
+    public function load() 
     {
         if (!is_readable($this->path)) {
             throw new \RuntimeException(sprintf('%s file is not readable', $this->path));
         }
-
-        $lines = file($this->path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        
+        $lines = file($this->path);
         foreach ($lines as $line) {
-
-            if (strpos(trim($line), '#') === 0) {
-                continue;
-            }
 
             list($name, $value) = explode('=', $line, 2);
             $name = trim($name);
@@ -45,7 +33,7 @@ class DotEnv
     }
 }
 
-    use DevCoder\DotEnv;
+    
 
 (new DotEnv(__DIR__ . '/.env'))->load();
 

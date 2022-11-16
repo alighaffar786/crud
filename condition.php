@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require 'db.php';
+    require '@db.php';
     session_start();
     $_SESSION['field'] = [];
     $name = $fatherName = $email = $pass  = "";
@@ -29,11 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($_SESSION['field']['email'] == "" && $_SESSION['field']['pass'] == "") {
-        $query = "SELECT id FROM user 
+        $query = "SELECT * FROM user 
                     WHERE email = '$email' AND password = '$pass'";
         $sql = mysqli_query($conn, $query);
-        $row = mysqli_fetch_assoc($sql);
-        if (isset($row)) {
+        $detail = mysqli_fetch_assoc($sql);
+        $_SESSION['user_detil'] = $detail;
+        if (isset($_SESSION['user_detil'])) {
             header('location: userList.php');
         } else {
             $_SESSION['field']['error'] = "Please enter correct Email and password" ;

@@ -1,7 +1,6 @@
 <?php
 require "header.php";
- session_start();
- require 'db.php';
+ require '@db.php';
 // check request method is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $method = $_POST['method'];
@@ -10,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_POST['id'];
     //include  fields validationn  
 
-        require 'validation.php';
+        require '@validation.php';
         // edit in db
 
         // check all all error message..
@@ -25,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 $emailER = " '". $email. "' is already in use please try another email";
                 $url = '/update.php';
-                $heading = "Update Form";
+                $headingForm = "Update Form";
                 $method = 'put';
                 $btn = "Update";
                 require 'form.php';
@@ -44,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } 
         else {
             $url = '/update.php';
-            $heading = "Update Form";
+            $headingForm = "Update Form";
             $method = 'put';
             $btn = "Update";
             require 'form.php';

@@ -1,6 +1,11 @@
+<?php
 
+$myfile = fopen("form.php","r");
+if(isset($headingForm)){
+
+?>
 <div class="shadow bg-white  flex-column rounded w-50 d-flex justify-content-center align-items-center p-4">
-    <h2 class="text-secondary fw-bold mb-5"><?php echo $heading ?></h2>
+    <h2 class="text-secondary fw-bold mb-5"><?php echo $headingForm ?></h2>
     <form class="w-100" method="post" action="<?php echo $url; ?>">
         <div class="mb-3 w-100">
             <label for="name" class="form-label fw-bold text-secondary">NAME</label>
@@ -53,3 +58,8 @@
         </div>
     </form>
 </div>
+<?php
+}else{
+    header('location:login.php');
+}
+?>

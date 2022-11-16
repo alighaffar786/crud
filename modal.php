@@ -27,7 +27,7 @@
 <?php
     }
     else{
-        header('location: userList.php');
+        header('location: login.php');
     }
 require "footer.php";
 ?>

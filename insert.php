@@ -2,11 +2,10 @@
 // check request method is POST
 require 'header.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require 'db.php';
-    session_start();
+    require '@db.php';
     
     //include  fields validation  
-    require 'validation.php';
+    require '@validation.php';
     
     // insert data in db
 
@@ -19,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($count) {
             $emailER = "'". $email ."' email is already in use please try another email";
             $url = '/insert.php';
-            $heading = "Sign up";
+            $headingForm = "Sign up";
             $btn = "Signup";
             require 'form.php';
         } else {
@@ -32,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->close();
     } else {
         $url = '/insert.php';
-        $heading = "Sign up";
+        $headingForm = "Sign up";
         $btn = "Signup";
         require 'form.php';
         session_unset();

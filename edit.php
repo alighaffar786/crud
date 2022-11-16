@@ -1,8 +1,7 @@
 <?php
 require "header.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            session_start();
-        require 'db.php';
+        require '@db.php';
         if(isset($_POST['id'])){
             $uid = $_POST['id'];
             $query = "SELECT * FROM user WHERE id = '$uid' ";
@@ -15,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pass = $record['password'];
         }
         $url = '/update.php';
-        $heading = "Update Form";
+        $headingForm = "Update Form";
         $method = 'put';
         $btn = "Update";
         require 'form.php';

@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link href="./css/style.css" rel="stylesheet">
-    <title>crud</title>
-</head>
-
-<body>
-
-    <!-- sing up form -->
-    <main class="container d-flex flex-column vh-100 justify-content-center ">
+<?php 
+    require "header.php";
+?> 
         <?php
-        session_start();
         if (isset($_SESSION['name'])) {
             echo "<div class='w-25 rounded  m-3 text-white fw-bold shadow p-3 bg-success'> Mr " . $_SESSION['name'] . " your are successfully signup please log in</div>";
-            
+            unset($_SESSION['name']);
         }
         ?>
 
@@ -69,7 +55,6 @@
             </form>
         </div>
 
-    </main>
-</body>
-
-</html>
+<?php 
+    require "footer.php";
+?> 

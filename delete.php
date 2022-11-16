@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db.php';
+require '@db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $method = $_POST['method'];
     
@@ -11,9 +11,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_query($conn, $query);
         $_SESSION['success'] = 'your data Deleted successfully';
         $conn->close();
-        header('location: userList.php');
+        if($_SESSION['user_detil']['id'] == $id){
+            session_unset();
+            session_destroy();
+            header('location: login.php');
+        }
+        else{
+            header('location: userList.php');
+        }
     }
     
+}
+else{
+    header('location:login.php');
 }
 
 ?>

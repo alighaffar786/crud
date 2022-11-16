@@ -1,4 +1,5 @@
 <?php
+require "header.php";
  session_start();
  require 'db.php';
 // check request method is POST
@@ -13,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // edit in db
 
         // check all all error message..
-        if ($nameER == "" && $fNameER == "" && $emailER == "" && $passER == "") {
+        if ($notValid == "") {
             
             
             // check  duplicate  email
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($count) {
                 
                 $emailER = " '". $email. "' is already in use please try another email";
-                $url = '/edit.php';
+                $url = '/update.php';
                 $heading = "Update Form";
                 $method = 'put';
                 $btn = "Update";
@@ -32,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             else{
                 // Update data query
                 $sql = "UPDATE user
-                    SET name = '$name' , father_name = '$fName' , email = '$email' , password = '$pass'
+                    SET name = '$name' , father_name = '$fatherName' , email = '$email' , password = '$pass'
                     WHERE id = '$id'";
                     mysqli_query($conn,$sql);
                     $_SESSION['success'] = 'your data Updated successfully';
@@ -42,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
         } 
         else {
-            $url = '/edit.php';
+            $url = '/update.php';
             $heading = "Update Form";
             $method = 'put';
             $btn = "Update";
@@ -53,3 +54,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 else {
     header("location: userlist.php");
 }
+require 'footer.php';

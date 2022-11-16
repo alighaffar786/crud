@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require 'db.php';
     session_start();
     $_SESSION['field'] = [];
-    $name = $fName = $email = $pass  = "";
+    $name = $fatherName = $email = $pass  = "";
     //  fields validation  
 
    //Email Validation   

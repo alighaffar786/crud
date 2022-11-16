@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 
-<body class="bg-secondary container my-5">
+<body class="container my-5">
     <?php
         session_start();
         if (isset($_SESSION['success'])) {
@@ -34,11 +34,19 @@
         while ($row = mysqli_fetch_assoc($query)) {
             $id = $row['id'];
             $name = $row['name'];
-            $fName = $row['father_name'];
-            echo "<tr><td>" . $name . "</td><td>" . $fName . "</td><td>";
+            $fatherName = $row['father_name'];
+            echo "<tr><td>" . $name . "</td><td>" . $fatherName . "</td><td>";
             ?>
-            <a href="editForm.php?id=<?php echo $id ?>" class="btn btn-primary">Update</a>
-            <a href="modal.php?id=<?php echo $id;?>" class=" btn btn-danger">Delete</a>
+            <!-- edit form -->
+            <form action="editForm.php" class="d-inline" method="post">
+                <input hidden name="id" value = "<?php echo $id; ?> " type="text">
+                <input type="submit" class="btn btn-primary" value="Update">
+            </form>
+            <!-- Delete -->
+            <form action="modal.php" class="d-inline" method="post">
+                <input hidden name="id" value = "<?php echo $id; ?> " type="text">
+                <input type="submit" class=" btn btn-danger" value="Delete">
+            </form>
             </td></tr>
             <?php
         }

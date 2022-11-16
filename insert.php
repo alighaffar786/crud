@@ -1,5 +1,6 @@
 <?php
 // check request method is POST
+require 'header.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require 'db.php';
     session_start();
@@ -10,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // insert data in db
 
     // check all all error message..
-    if ($nameER == "" && $fNameER == "" && $emailER == "" && $passER == "") {
+    if ($notValid == "") {
         $checkUser = "SELECT * FROM user WHERE email = '$email'";
         $result = mysqli_query($conn, $checkUser);
         $count  = mysqli_fetch_assoc($result);
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             require 'form.php';
         } else {
             // insert data query
-            $sql = "INSERT INTO user (name, father_name, email,password)VALUES ('$name', '$fName', '$email','$pass')";
+            $sql = "INSERT INTO user (name, father_name, email,password)VALUES ('$name', '$fatherName', '$email','$pass')";
             mysqli_query($conn, $sql);
             header('location: login.php');
             $_SESSION['name'] = $name;
@@ -40,3 +41,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     header("location: signup.php");
 }
+require 'footer.php';
+?>

@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+    require "header.php";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link href="./css/style.css" rel="stylesheet">
-
-</head>
-
-<body class="modal-open" style="overflow: hidden; padding-right: 0px;">
-
+?>
     <!-- Modal -->
     <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true " style="display: block;" role="dialog">
         <div class="modal-dialog">
@@ -24,7 +14,7 @@
                     <a class="btn btn-secondary" href="http://crud.test/userList.php">cancel</a>
                     <form method="post" action="/delete.php" class="d-inline">
                         <?php
-                           $id = $_GET['id']
+                           $id = $_POST['id']
                         ?>
                         <input hidden type="text" name="id" value="<?php echo $id; ?>">
                         <input type="text" hidden name="method" value="delete">
@@ -34,6 +24,10 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+<?php
+    }
+    else{
+        header('location: userList.php');
+    }
+require "footer.php";
+?>
